@@ -21,9 +21,9 @@ const InfiniteScroll = () => {
 
     // function to check scroll position and load more if needed
     const handleScroll = () => {
-        if(isLoading) return;
+        if (isLoading) return;
 
-        if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
             getUsersFromAPI();
         }
     }
@@ -38,19 +38,10 @@ const InfiniteScroll = () => {
         }
     }, []);
 
-    
+
     return (
         <>
-            <h1>Github Users</h1>
-            {/* {users.map(user => (
-                <div key={user.id}>
-                    <p>{user.login}</p>
-                    <img src={user.avatar_url} alt={user.login} />
-                    <h3>{user.login}</h3>
-                    <a href={user.html_url} target="_blank" rel="noopener noreferrer">View Profile</a>
-                </div>
-            ))} */}
-
+            <h1 className='page-title'>Github Users</h1>
             <section>
                 <div className="container">
                     {users.map((user) => (
@@ -62,7 +53,7 @@ const InfiniteScroll = () => {
                             <div className="content-container">
                                 <div className="contentBx">
                                     <h3>
-                                        {user.login}<br/>
+                                        {user.login}<br />
                                         <span>{user.type}</span>
                                     </h3>
                                 </div>
@@ -72,7 +63,7 @@ const InfiniteScroll = () => {
                             </div>
                         </div>
                     ))}
-                    
+
                 </div>
             </section>
 
