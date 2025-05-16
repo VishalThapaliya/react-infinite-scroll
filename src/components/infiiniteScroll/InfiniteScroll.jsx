@@ -6,18 +6,19 @@ const InfiniteScroll = () => {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
 
-    const getUsersFromAPI = () => {
-        setIsLoading(false);
-        fetch(`https://api.github.com/users?since=${(page - 1) * 30}`).then((response) => response.json()).then((data) => {
+    const getUsersFromAPI = async () => {
+        try {
+            setIsLoading(true);
+            const response = await fetch(`https://api.github.com/users?since=${(page - 1) * 30}`);
+            const data = await response.json();
             setUsers((prevUsers) => [...prevUsers, ...data]);
             setPage((prevPage) => prevPage + 1);
-            setIsLoading(false);
-        }).catch(error => {
+        } catch (error) {
             console.error(`Error while fetching users: ${error}`);
+        } finally {
             setIsLoading(false);
-        });
+        }
     }
-
 
     // function to check scroll position and load more if needed
     const handleScroll = () => {
